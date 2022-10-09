@@ -1,42 +1,94 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './index.css'
-import { AccountPage, HomePage, ActivityPage, LandingPage } from './pages'
+import './styles/index.css'
+import { Account, Groups, Activity, Auth, Group, Expense } from './pages'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ApolloProvider } from '@apollo/client'
-import apolloClient from './apolloClient'
+import apolloClient from './graphql/apolloClient'
+import { ErrorBoundary } from './components'
+import { Toaster } from 'react-hot-toast'
+import { AuthProvider } from './hooks/useAuth'
+import { ProtectedRoute } from './components/ProtectedRoute'
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <LandingPage />,
+    path: '/auth',
+    element: <Auth />,
+    errorElement: <ErrorBoundary />,
   },
   {
     path: '/register',
-    element: <HomePage />,
+    element: <Auth />,
+    errorElement: <ErrorBoundary />,
   },
   {
     path: '/login',
-    element: <HomePage />,
+    element: <Auth />,
+    errorElement: <ErrorBoundary />,
   },
   {
-    path: '/dashboard',
-    element: <HomePage />,
+    path: '/',
+    element: (
+      <ProtectedRoute>
+        <Groups />
+      </ProtectedRoute>
+    ),
+    errorElement: <ErrorBoundary />,
+  },
+  {
+    path: '/home',
+    element: (
+      <ProtectedRoute>
+        <Groups />
+      </ProtectedRoute>
+    ),
+    errorElement: <ErrorBoundary />,
+  },
+  {
+    path: '/groups/:groupId',
+    element: (
+      <ProtectedRoute>
+        <Group />
+      </ProtectedRoute>
+    ),
+    errorElement: <ErrorBoundary />,
+  },
+  {
+    path: '/expenses/:expenseId',
+    element: (
+      <ProtectedRoute>
+        <Expense />
+      </ProtectedRoute>
+    ),
+    errorElement: <ErrorBoundary />,
   },
   {
     path: '/activity',
-    element: <ActivityPage />,
+    element: (
+      <ProtectedRoute>
+        <Activity />
+      </ProtectedRoute>
+    ),
+    errorElement: <ErrorBoundary />,
   },
   {
     path: '/account',
-    element: <AccountPage />,
+    element: (
+      <ProtectedRoute>
+        <Account />
+      </ProtectedRoute>
+    ),
+    errorElement: <ErrorBoundary />,
   },
 ])
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ApolloProvider client={apolloClient}>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+        <Toaster />
+      </AuthProvider>
     </ApolloProvider>
   </React.StrictMode>
 )
