@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  border: 1px solid #242424;
+  border-radius: 4px;
+  outline: none;
+  padding: 0.25em 0.5em;
+  color: #242424;
+  font-size: 1.5em;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 1em;
+}
+
+button {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.active {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+}
+
+.error {
+  color: #ff0000af;
+}
