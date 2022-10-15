@@ -5,6 +5,7 @@ const FETCH_EXPENSES_QUERY = gql`
   query {
     getExpenses {
       id
+      groupId
       title
       amount
       createdAt

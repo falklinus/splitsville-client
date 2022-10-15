@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom'
 import styles from '../styles/expense-item.module.css'
 import { TExpense } from '../types/types'
 import moment from 'moment'
+import { useAuth } from '../hooks/useAuth'
 
 export const ExpenseItem: FC<{ expense: TExpense }> = ({ expense }) => {
-  const isUsersExpense = true
+  const { user } = useAuth()
+  const isUsersExpense = expense.paidBy.id === user.id
 
   return (
     <Link to={`/expenses/${expense.id}`}>

@@ -1,19 +1,29 @@
-export type User = {
+export type TUser = {
   id: string
   username: string
   email: string
 }
 
+export type TGroup = {
+  id: string
+  title: string
+  members: TUser[]
+  expenses: TExpense[]
+  createdAt: string
+  createdBy: TUser
+}
+
 export type TExpense = {
   id: string
+  groupId: string
   title: string
   amount: number
   createdAt: string
-  createdBy: User
-  paidBy: User
+  createdBy: TUser
+  paidBy: TUser
   shares: {
     share: number
-    user: User
+    user: TUser
   }[]
 }
 

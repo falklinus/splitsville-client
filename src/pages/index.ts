@@ -1,4 +1,4 @@
-export { Groups } from './groups/Groups'
+export { Home } from './home/Home'
 export { Account } from './account/Account'
 export { Activity } from './activity/Activity'
 export { Auth } from './auth/Auth'

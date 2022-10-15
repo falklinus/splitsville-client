@@ -1,14 +1,19 @@
 import React from 'react'
 import styles from '../../../styles/group.module.css'
-import { useExpenses } from '../../../hooks'
+import { useGroup } from '../../../hooks'
 import { IoIosArrowBack } from 'react-icons/io'
 import { TbDots } from 'react-icons/tb'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { ExpenseItem } from '../../../components'
+import { convertUserNameToInitials } from '../../../util'
 
 export const Group = () => {
+  const { groupId } = useParams()
   const navigate = useNavigate()
-  const { expenses, totalAmount, loading } = useExpenses()
+  const { group, totalAmount, loading } = useGroup(groupId as string)
+
+  const expenses = group.expenses
+
   if (loading) {
     return <div>Loading...</div>
   }
@@ -21,12 +26,15 @@ export const Group = () => {
           <TbDots size={30} />
         </div>
         <h3 className={styles.title}>
-          <span>Gruppen</span>
+          <span>{group.title}</span>
           <span className={styles.total}>{totalAmount} kr</span>
         </h3>
         <div className={styles.members}>
-          <div className={styles['name-circle']}>BE</div>
-          <div className={styles['name-circle']}>J</div>
+          {group.members.map((member) => (
+            <div key={member.id} className={styles['name-circle']}>
+              {convertUserNameToInitials(member.username)}
+            </div>
+          ))}
         </div>
       </header>
       <section className={styles['list-container']}>
