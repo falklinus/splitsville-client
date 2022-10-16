@@ -53,6 +53,10 @@ button:active {
   background-color: lightgrey;
 }
 
+*::-webkit-scrollbar {
+  display: none;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

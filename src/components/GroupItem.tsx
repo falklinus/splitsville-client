@@ -1,19 +1,19 @@
-import React, { FC, useMemo } from 'react'
-import { TbReceipt, TbReceiptRefund } from 'react-icons/tb'
-import { Link } from 'react-router-dom'
+import React, {FC, useMemo} from 'react'
+import {TbReceipt, TbReceiptRefund} from 'react-icons/tb'
+import {Link} from 'react-router-dom'
 import styles from '../styles/group-item.module.css'
-import { TGroup } from '../types/types'
+import {TGroup} from '../types/types'
 import moment from 'moment'
-import { useAuth } from '../hooks/useAuth'
+import {useAuth} from '../hooks/useAuth'
 
-export const GroupItem: FC<{ group: TGroup }> = ({ group }) => {
-  const { user } = useAuth()
+export const GroupItem: FC<{ group: TGroup }> = ({group}) => {
+  const {user} = useAuth()
 
-  const { expenses } = group
+  const {expenses} = group
 
   const whatIHavePaid = useMemo(
     () =>
-      expenses.reduce((sum, { paidBy, amount }) => {
+      expenses.reduce((sum, {paidBy, amount}) => {
         if (paidBy.id === user.id) {
           return (sum += amount)
         }
@@ -24,7 +24,7 @@ export const GroupItem: FC<{ group: TGroup }> = ({ group }) => {
 
   const whatIHaveBorrowed = useMemo(
     () =>
-      expenses.reduce((sum, { amount, shares }) => {
+      expenses.reduce((sum, {amount, shares}) => {
         const myShare =
           shares.find((share) => share.user.id === user.id)?.share ?? 0
         sum += amount * myShare
@@ -47,28 +47,6 @@ export const GroupItem: FC<{ group: TGroup }> = ({ group }) => {
           )}
         </div>
       </div>
-
-      {/* <div className={styles.container}>
-        <div className={styles.header}>
-          {isUsersExpense ? (
-            <TbReceiptRefund size={50} />
-          ) : (
-            <TbReceipt size={50} />
-          )}
-          <div className={styles.title}>
-            <p>{expense.title}</p>
-            <span className={styles['created-info']}>
-              {moment(expense.createdAt)
-                .format('D MMM., YYYY, hh:m')
-                .toLocaleLowerCase()}
-            </span>
-          </div>
-        </div>
-        <div className={styles['paid-by']}>
-          <div className={styles.amount}>{expense.amount} kr</div>
-          {expense.paidBy.username} betalade
-        </div>
-      </div> */}
     </Link>
   )
 }

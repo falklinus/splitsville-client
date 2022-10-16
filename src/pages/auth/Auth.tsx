@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, redirect } from 'react-router-dom'
 import { useLogin } from '../../hooks'
 import { useRegister } from '../../hooks'
 import { useAuth } from '../../hooks/useAuth'
@@ -133,7 +133,7 @@ export const Auth = () => {
 
   useEffect(() => {
     if (user?.id) {
-      navigate('/')
+      redirect('/')
     }
   }, [user?.id])
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './styles/index.css'
-import { Account, Home, Activity, Auth, Group, Expense } from './pages'
+import { Account, Home, Activity, Auth, Group, Expense, AddExpense } from './pages'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ApolloProvider } from '@apollo/client'
 import apolloClient from './graphql/apolloClient'
@@ -58,6 +58,15 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <Group />
+      </ProtectedRoute>
+    ),
+    errorElement: <ErrorBoundary />,
+  },
+  {
+    path: '/groups/:groupId/add-expense',
+    element: (
+      <ProtectedRoute>
+        <AddExpense />
       </ProtectedRoute>
     ),
     errorElement: <ErrorBoundary />,
