@@ -6,8 +6,7 @@ import { useAuth } from '../../hooks/useAuth'
 import styles from '../../styles/landing.module.css'
 
 export const Register = () => {
-  const navigate = useNavigate()
-  const { register, loading, error } = useRegister()
+  const { register, error } = useRegister()
   const [registerInput, setRegisterInput] = useState({
     username: '',
     email: '',
@@ -27,7 +26,7 @@ export const Register = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     await register(registerInput)
-    navigate('/')
+    location.reload()
   }
 
   return (
@@ -78,8 +77,7 @@ export const Register = () => {
 }
 
 export const Login = () => {
-  const navigate = useNavigate()
-  const { login, loading, error } = useLogin()
+  const { login, error } = useLogin()
   const [loginInput, setLoginInput] = useState({
     email: '',
     password: '',
@@ -97,7 +95,7 @@ export const Login = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     await login(loginInput)
-    navigate('/')
+    location.reload()
   }
 
   return (
