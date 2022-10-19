@@ -1,6 +1,4 @@
-import { useQuery } from '@apollo/client'
 import { fetchExpenseById } from '../graphql/queries/fetchExpenseById'
-import { TExpense } from '../types/types'
 
 export const useExpense = (expenseId?: string) => {
   if (!expenseId) {

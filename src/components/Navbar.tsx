@@ -17,19 +17,19 @@ export const Navbar = () => {
       <Link to={'/activity'}>
         <button className={activeTab === 'activity' ? styles.active : ''}>
           <BiBell size={30} />
-          Activity
+          <p>Aktivitet</p>
         </button>
       </Link>
       <Link to={'/'}>
         <button className={activeTab === 'home' ? styles.active : ''}>
           <BiHomeAlt size={30} />
-          Home
+          <p>Grupper</p>
         </button>
       </Link>
       <Link to={'/account'}>
         <button className={activeTab === 'account' ? styles.active : ''}>
           <BiUser size={30} />
-          Account
+          <p>Min sida</p>
         </button>
       </Link>
     </footer>
