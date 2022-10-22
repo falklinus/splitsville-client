@@ -8,16 +8,16 @@ import { useMe } from '../hooks'
 
 export const ExpenseItem: FC<{ expense: TExpense }> = ({ expense }) => {
   const { me } = useMe()
-  const isUsersExpense = expense.paidBy.id === me.id
+  const isUsersExpense = expense.paidBy.id === me?.id
 
   return (
     <Link to={`/expenses/${expense.id}`}>
       <div className={styles.container}>
         <div className={styles.header}>
           {isUsersExpense ? (
-            <TbReceiptRefund size={50}/>
+            <TbReceiptRefund size={50} />
           ) : (
-            <TbReceipt size={50}/>
+            <TbReceipt size={50} />
           )}
           <div className={styles.title}>
             <p>{expense.title}</p>

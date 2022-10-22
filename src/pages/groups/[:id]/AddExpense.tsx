@@ -29,7 +29,7 @@ export const AddExpense = () => {
           <span>kr</span>
           <input className={styles.input} type='number' placeholder='kr' />
         </div>
-        <button type='button'>Betalat av {me.username}</button>
+        <button type='button'>Betalat av {me?.username}</button>
       </form>
     </div>
   )

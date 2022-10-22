@@ -7,12 +7,16 @@ export const Account = () => {
   return (
     <div>
       Account
-      <button onClick={() => {
-        localStorage.removeItem('split_token')
-        window.location.reload()
-      }}>Logga ut</button>
+      <button
+        onClick={() => {
+          localStorage.removeItem('split_token')
+          window.location.reload()
+        }}
+      >
+        Logga ut
+      </button>
       <div>
-        <p>User: {me.username}</p>
+        <p>User: {me?.username}</p>
         Friends:
         <ul>
           {me?.friends?.map((friend) => (

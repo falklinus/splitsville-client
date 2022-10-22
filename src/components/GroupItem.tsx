@@ -12,7 +12,7 @@ export const GroupItem: FC<{ group: TGroup }> = ({ group }) => {
   const whatIHavePaid = useMemo(
     () =>
       expenses.reduce((sum, { paidBy, amount }) => {
-        if (paidBy.id === me.id) {
+        if (paidBy.id === me?.id) {
           return (sum += amount)
         }
         return sum
@@ -24,7 +24,7 @@ export const GroupItem: FC<{ group: TGroup }> = ({ group }) => {
     () =>
       expenses.reduce((sum, { amount, shares }) => {
         const myShare =
-          shares.find((share) => share.user.id === me.id)?.share ?? 0
+          shares.find((share) => share.user.id === me?.id)?.share ?? 0
         sum += amount * myShare
         return sum
       }, 0),
