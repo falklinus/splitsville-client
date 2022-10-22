@@ -49,7 +49,7 @@
   white-space: nowrap;
 }
 
-form {
+.form {
   padding: 2em;
   display: flex;
   width: 100%;
@@ -68,7 +68,7 @@ form {
   font-size: 30px;
 }
 
-input {
+.input {
   background-color: transparent;
   border: none;
   border-bottom: 1px solid #242424;
@@ -76,7 +76,6 @@ input {
   outline: none;
   padding: 0.25em 0.5em;
   color: #242424;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   width: 100%;
 }
-

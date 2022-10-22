@@ -13,12 +13,12 @@
   gap: 1em;
 }
 
-label {
+.label {
   display: flex;
   flex-direction: column;
 }
 
-input {
+.input {
   background-color: transparent;
   border: none;
   border: 1px solid #242424;
@@ -34,7 +34,7 @@ input {
   gap: 1em;
 }
 
-button {
+.button {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 }
 

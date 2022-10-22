@@ -1,21 +1,19 @@
 import toast from 'react-hot-toast'
 import { registerMutation } from '../graphql/mutations/registerMutation'
 import { TRegisterInput, TRegisterError } from '../types/types'
-import { useAuth } from './useAuth'
 
 export const useRegister = () => {
   const [mutation, { loading, error }] = registerMutation()
-  const { loginUser } = useAuth()
 
   const register = (registerInput: TRegisterInput) =>
     toast.promise(mutation({ variables: registerInput }), {
       loading: 'Registering',
       success: ({
         data: {
-          register: { id, token, username, email },
+          register: { token, username },
         },
       }) => {
-        loginUser({ username, id, email }, token)
+        localStorage.setItem('split_token', token)
         return `Welcome ${username}!`
       },
       error: (error) => error.graphQLErrors[0].message,

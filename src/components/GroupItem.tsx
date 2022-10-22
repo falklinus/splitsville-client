@@ -1,20 +1,18 @@
-import React, {FC, useMemo} from 'react'
-import {TbReceipt, TbReceiptRefund} from 'react-icons/tb'
-import {Link} from 'react-router-dom'
+import React, { FC, useMemo } from 'react'
+import { Link } from 'react-router-dom'
 import styles from '../styles/group-item.module.css'
-import {TGroup} from '../types/types'
-import moment from 'moment'
-import {useAuth} from '../hooks/useAuth'
+import { TGroup } from '../types/types'
+import { useMe } from '../hooks'
 
-export const GroupItem: FC<{ group: TGroup }> = ({group}) => {
-  const {user} = useAuth()
+export const GroupItem: FC<{ group: TGroup }> = ({ group }) => {
+  const { me } = useMe()
 
-  const {expenses} = group
+  const { expenses } = group
 
   const whatIHavePaid = useMemo(
     () =>
-      expenses.reduce((sum, {paidBy, amount}) => {
-        if (paidBy.id === user.id) {
+      expenses.reduce((sum, { paidBy, amount }) => {
+        if (paidBy.id === me.id) {
           return (sum += amount)
         }
         return sum
@@ -24,9 +22,9 @@ export const GroupItem: FC<{ group: TGroup }> = ({group}) => {
 
   const whatIHaveBorrowed = useMemo(
     () =>
-      expenses.reduce((sum, {amount, shares}) => {
+      expenses.reduce((sum, { amount, shares }) => {
         const myShare =
-          shares.find((share) => share.user.id === user.id)?.share ?? 0
+          shares.find((share) => share.user.id === me.id)?.share ?? 0
         sum += amount * myShare
         return sum
       }, 0),

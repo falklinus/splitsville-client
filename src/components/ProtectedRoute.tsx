@@ -1,16 +1,16 @@
 import React, { ReactNode, useEffect } from 'react'
 import {useNavigate} from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth'
+import { useMe } from '../hooks'
 
 export const ProtectedRoute = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate()
-  const { user } = useAuth()
+  const { me } = useMe()
 
   useEffect(() => {
-    if (!user?.id) {
+    if (!me?.id) {
       navigate('/auth')
     }
-  }, [user?.id])
+  }, [me?.id])
 
   return <>{children}</>
 }

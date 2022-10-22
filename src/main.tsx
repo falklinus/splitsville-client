@@ -16,7 +16,6 @@ import { ApolloProvider } from '@apollo/client'
 import apolloClient from './graphql/apolloClient'
 import { ErrorBoundary } from './components'
 import { Toaster } from 'react-hot-toast'
-import { AuthProvider } from './hooks/useAuth'
 import { ProtectedRoute } from './components/ProtectedRoute'
 
 const router = createBrowserRouter([
@@ -121,10 +120,8 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ApolloProvider client={apolloClient}>
-      <AuthProvider>
         <RouterProvider router={router} />
         <Toaster />
-      </AuthProvider>
     </ApolloProvider>
   </React.StrictMode>
 )

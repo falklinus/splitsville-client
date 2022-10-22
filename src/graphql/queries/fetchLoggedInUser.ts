@@ -17,12 +17,13 @@ const FETCH_LOGGED_IN_USER_QUERY = gql`
 `
 
 export const fetchLoggedInUser = () => {
-  const { data, loading } = useQuery<{ getMe: TUser }, any>(
+  const { data, loading, error } = useQuery<{ getMe: TUser }, any>(
     FETCH_LOGGED_IN_USER_QUERY
   )
 
   return {
-    me: data?.getMe ?? ({} as TUser),
+    me: data?.getMe,
     loading,
+    error,
   }
 }

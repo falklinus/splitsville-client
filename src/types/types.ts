@@ -1,8 +1,14 @@
+export type TFriend = {
+  id: string
+  username: string
+  email: string
+}
+
 export type TUser = {
   id: string
   username: string
   email: string
-  friends: TUser[]
+  friends: TFriend[]
 }
 
 export type TGroup = {

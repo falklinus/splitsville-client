@@ -4,20 +4,20 @@ import { Link } from 'react-router-dom'
 import styles from '../styles/expense-item.module.css'
 import { TExpense } from '../types/types'
 import moment from 'moment'
-import { useAuth } from '../hooks/useAuth'
+import { useMe } from '../hooks'
 
 export const ExpenseItem: FC<{ expense: TExpense }> = ({ expense }) => {
-  const { user } = useAuth()
-  const isUsersExpense = expense.paidBy.id === user.id
+  const { me } = useMe()
+  const isUsersExpense = expense.paidBy.id === me.id
 
   return (
     <Link to={`/expenses/${expense.id}`}>
       <div className={styles.container}>
         <div className={styles.header}>
           {isUsersExpense ? (
-            <TbReceiptRefund size={50} />
+            <TbReceiptRefund size={50}/>
           ) : (
-            <TbReceipt size={50} />
+            <TbReceipt size={50}/>
           )}
           <div className={styles.title}>
             <p>{expense.title}</p>

@@ -53,6 +53,10 @@ button:active {
   background-color: lightgrey;
 }
 
+ul {
+  list-style: none;
+}
+
 *::-webkit-scrollbar {
   display: none;
 }
