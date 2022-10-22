@@ -16,14 +16,16 @@ export const SelectMembersModal = ({
   onClose: () => void
 }) => {
   const { me } = fetchLoggedInUser()
-  const [searchUsers, { data: searchResult, loading, error }] =
-    useLazyQuery(SEARCH_USERS_QUERY)
+  const [searchUsers, { data, loading, error }] = useLazyQuery<{
+    searchUsers: TUser[]
+  }>(SEARCH_USERS_QUERY)
 
-  const [searchText, setSearchText] = useState('')
+  const searchResult = data?.searchUsers
+  const [searchTerm, setSearchTerm] = useState('')
   useEffect(() => {
-    if (!searchText) return
-    searchUsers({ variables: { search: searchText } })
-  }, [searchText])
+    if (!searchTerm) return
+    searchUsers({ variables: { searchTerm } })
+  }, [searchTerm])
 
   const clickRef = useRef(null)
 
@@ -39,14 +41,14 @@ export const SelectMembersModal = ({
   return (
     <div ref={clickRef} className={styles.container}>
       <input
-        onChange={({ currentTarget: { value } }) => setSearchText(value)}
+        onChange={({ currentTarget: { value } }) => setSearchTerm(value)}
         autoFocus
         className={styles.input}
         type='text'
       />
       <div className={styles['search-list']}>
         {me?.friends.map((friend) => (
-          <option
+          <div
             className={styles.option}
             key={friend.id}
             onClick={() => {
@@ -55,7 +57,19 @@ export const SelectMembersModal = ({
             }}
           >
             {friend.username}
-          </option>
+          </div>
+        ))}
+        {searchResult?.map((user) => (
+          <div
+            className={styles.option}
+            key={user.id}
+            onClick={() => {
+              addMember(user)
+              onClose()
+            }}
+          >
+            {user.username}
+          </div>
         ))}
       </div>
     </div>
