@@ -7,10 +7,10 @@
   overflow: auto;
   background-color: #f9f9f9;
   position: absolute;
-  top: 50%;
+  top: 20%;
   left: 50%;
   width: calc(100vw - 4em);
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   animation: show 500ms ease;
 }
 
