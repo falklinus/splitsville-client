@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react'
-import { BiCheck, BiTrash, BiTrashAlt } from 'react-icons/bi'
-import { IoAdd, IoCloseSharp } from 'react-icons/io5'
+import { BiCheck, BiTrashAlt } from 'react-icons/bi'
+import { IoAddOutline, IoCloseSharp } from 'react-icons/io5'
 import { useNavigate } from 'react-router-dom'
 import { useMe } from '../../../hooks'
 import styles from './create-group.module.css'
@@ -41,7 +41,7 @@ export const CreateGroup = () => {
     <>
       <div
         className={`slide-up-container ${
-          selectMembersModalVisible && styles.dim
+          selectMembersModalVisible ? styles.dim : ''
         }`}
       >
         <header className='header'>
@@ -53,7 +53,10 @@ export const CreateGroup = () => {
               createGroup({
                 title: titleRef?.current?.value,
                 userIds: selectedMembers.map((member) => member.id),
-              }).then(() => navigate('/'))
+              }).then((res) => {
+                const groupId = res?.data?.createGroup.id
+                navigate(`/groups/${groupId}`)
+              })
             }
           />
         </header>
@@ -90,7 +93,7 @@ export const CreateGroup = () => {
                   className={`card ${styles.button}`}
                   onClick={() => setSelectMembersModalVisible(true)}
                 >
-                  <IoAdd size={22} />
+                  <IoAddOutline size={22} />
                 </button>
               </li>
             </ul>

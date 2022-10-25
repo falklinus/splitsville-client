@@ -1,5 +1,5 @@
 import React from 'react'
-import { BiPlusCircle } from 'react-icons/bi'
+import { BiPlus } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 import { Groups, Navbar } from '../../components'
 import styles from './home.module.css'
@@ -8,13 +8,15 @@ export const Home = () => {
   return (
     <>
       <div className={styles.container}>
-        <Link to='groups/create'>
-          <div className='card'>
-            <div className={styles['create-group']}>
-              Skapa en grupp <BiPlusCircle size={30} />
+        <header className={styles.header}>
+          <strong>Grupper</strong>
+          <Link to='groups/create'>
+            <div className='flex-row'>
+              Ny grupp &nbsp; <BiPlus size={24} />
             </div>
-          </div>
-        </Link>
+          </Link>
+        </header>
+
         <Groups />
       </div>
       <Navbar />

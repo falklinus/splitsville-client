@@ -1,16 +1,20 @@
-import React, { ReactNode, useEffect } from 'react'
-import {useNavigate} from 'react-router-dom'
-import { useMe } from '../hooks'
+import React, { ReactNode, Suspense, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-export const ProtectedRoute = ({ children }: { children: ReactNode }) => {
+export const ProtectedRouteInner = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate()
-  const { me } = useMe()
 
   useEffect(() => {
-    if (!me?.id) {
-      navigate('/auth')
+    if (!localStorage.getItem('split_token')) {
+      navigate('/login')
     }
-  }, [me?.id])
+  }, [])
 
   return <>{children}</>
 }
+
+export const ProtectedRoute = ({ children }: { children: ReactNode }) => (
+  <Suspense>
+    <ProtectedRouteInner>{children}</ProtectedRouteInner>
+  </Suspense>
+)

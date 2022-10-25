@@ -1,7 +1,7 @@
 import { useQuery, gql } from '@apollo/client'
 import { TGroup } from '../../types/types'
 
-const FETCH_GROUPS_QUERY = gql`
+export const FETCH_GROUPS_QUERY = gql`
   query {
     getGroups {
       id

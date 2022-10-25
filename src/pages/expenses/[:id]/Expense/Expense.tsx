@@ -20,7 +20,7 @@ export const Expense = () => {
   }
 
   return (
-    <div className={styles.container}>
+    <div className='slide-up-container'>
       <header className={styles.header}>
         <IoCloseSharp size={30} onClick={() => navigate(-1)} />
         <p className={styles.title}>{expense.title}</p>

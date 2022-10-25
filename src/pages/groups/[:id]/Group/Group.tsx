@@ -43,21 +43,6 @@ export const Group = () => {
           {expenses.map((expense) => (
             <ExpenseItem key={expense.id} expense={expense} />
           ))}
-          {expenses.map((expense) => (
-            <ExpenseItem key={expense.id} expense={expense} />
-          ))}
-          {expenses.map((expense) => (
-            <ExpenseItem key={expense.id} expense={expense} />
-          ))}
-          {expenses.map((expense) => (
-            <ExpenseItem key={expense.id} expense={expense} />
-          ))}
-          {expenses.map((expense) => (
-            <ExpenseItem key={expense.id} expense={expense} />
-          ))}
-          {expenses.map((expense) => (
-            <ExpenseItem key={expense.id} expense={expense} />
-          ))}
         </div>
       </section>
       <footer className={styles.footer}>

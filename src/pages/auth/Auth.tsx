@@ -136,13 +136,12 @@ export const Login = () => {
 
 export const Auth = () => {
   const navigate = useNavigate()
-  const { me } = useMe()
 
   useEffect(() => {
-    if (me?.id) {
+    if (localStorage.getItem('split_token')) {
       navigate('/')
     }
-  }, [me?.id])
+  }, [])
 
   const [activeForm, setActiveForm] = useState('login')
 

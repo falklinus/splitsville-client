@@ -1,7 +1,8 @@
 import { gql, useQuery } from '@apollo/client'
 import { TUser } from '../../types/types'
+import { handleLogout } from '../../util'
 
-const FETCH_LOGGED_IN_USER_QUERY = gql`
+export const FETCH_LOGGED_IN_USER_QUERY = gql`
   query {
     getMe {
       id
@@ -18,7 +19,12 @@ const FETCH_LOGGED_IN_USER_QUERY = gql`
 
 export const fetchLoggedInUser = () => {
   const { data, loading, error } = useQuery<{ getMe: TUser }, any>(
-    FETCH_LOGGED_IN_USER_QUERY
+    FETCH_LOGGED_IN_USER_QUERY,
+    {
+      onError: () => {
+        handleLogout()
+      },
+    }
   )
 
   return {

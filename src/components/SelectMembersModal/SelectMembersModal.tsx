@@ -57,17 +57,6 @@ export const SelectMembersModal = ({
         type='text'
       />
       <div className={styles['search-list']}>
-        {/* {me?.friends.map((friend) => (
-          <div
-            key={friend.id}
-            onClick={() => {
-              addMember(friend as TUser)
-              onClose()
-            }}
-          >
-            {friend.username}
-          </div>
-        ))} */}
         {searchResult?.map((user) => (
           <div
             key={user.id}
