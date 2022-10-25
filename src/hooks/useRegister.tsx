@@ -7,14 +7,14 @@ export const useRegister = () => {
 
   const register = (registerInput: TRegisterInput) =>
     toast.promise(mutation({ variables: registerInput }), {
-      loading: 'Registering',
+      loading: 'Registrerar dig',
       success: ({
         data: {
           register: { token, username },
         },
       }) => {
         localStorage.setItem('split_token', token)
-        return `Welcome ${username}!`
+        return `Välkommen ${username}!`
       },
       error: (error) => error.graphQLErrors[0].message,
     })

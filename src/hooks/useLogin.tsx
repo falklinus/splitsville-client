@@ -6,14 +6,14 @@ export const useLogin = () => {
   const [mutation, { loading, error }] = loginMutation()
   const login = (loginInput: TLoginInput) =>
     toast.promise(mutation({ variables: loginInput }), {
-      loading: 'Logging in',
+      loading: 'Loggar in',
       success: ({
         data: {
-          login: {token, username },
+          login: { token, username },
         },
       }) => {
         localStorage.setItem('split_token', token)
-        return `Welcome ${username}!`
+        return `Välkommen ${username}!`
       },
       error: (error) => error.graphQLErrors[0].message,
     })

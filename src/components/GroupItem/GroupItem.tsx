@@ -1,8 +1,8 @@
 import React, { FC, useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import styles from '../styles/group-item.module.css'
-import { TGroup } from '../types/types'
-import { useMe } from '../hooks'
+import styles from './group-item.module.css'
+import { TGroup } from '../../types/types'
+import { useMe } from '../../hooks'
 
 export const GroupItem: FC<{ group: TGroup }> = ({ group }) => {
   const { me } = useMe()

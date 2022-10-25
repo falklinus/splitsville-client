@@ -1,0 +1,15 @@
+.form-control > span {
+  font-size: 30px;
+}
+
+.input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #242424;
+  border-radius: 0;
+  outline: none;
+  padding: 0.25em 0.5em;
+  color: #242424;
+  font-size: 1.5rem;
+  width: 100%;
+}

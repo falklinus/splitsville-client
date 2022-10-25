@@ -57,3 +57,8 @@ export type TLoginError = {
   email?: string
   password?: string
 }
+
+export type TCreateGroupInput = {
+  userIds: string[]
+  title?: string
+}

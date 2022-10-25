@@ -1,10 +1,10 @@
 import React, { FC } from 'react'
 import { TbReceipt, TbReceiptRefund } from 'react-icons/tb'
 import { Link } from 'react-router-dom'
-import styles from '../styles/expense-item.module.css'
-import { TExpense } from '../types/types'
+import styles from './expense-item.module.css'
+import { TExpense } from '../../types/types'
 import moment from 'moment'
-import { useMe } from '../hooks'
+import { useMe } from '../../hooks'
 
 export const ExpenseItem: FC<{ expense: TExpense }> = ({ expense }) => {
   const { me } = useMe()

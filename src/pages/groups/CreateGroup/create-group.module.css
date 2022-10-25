@@ -1,0 +1,31 @@
+.dim {
+  pointer-events: none;
+  touch-action: none;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  border-bottom: 1px solid #21354721;
+  padding: 0.25em 1em;
+  width: 100%;
+}
+
+.add-members {
+  width: 100%;
+}
+
+.member-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em;
+  border-bottom: 1px dotted #21354721;
+  font-size: 1.5rem;
+}
+
+.button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}

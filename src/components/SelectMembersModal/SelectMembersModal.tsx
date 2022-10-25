@@ -1,17 +1,19 @@
 import { useLazyQuery } from '@apollo/client'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { fetchLoggedInUser } from '../graphql/queries/fetchLoggedInUser'
-import { SEARCH_USERS_QUERY } from '../graphql/queries/searchUser'
-import { useClickOutside, useMe } from '../hooks'
-import styles from '../styles/select-members-modal.module.css'
-import { TUser } from '../types/types'
+import { fetchLoggedInUser } from '../../graphql/queries/fetchLoggedInUser'
+import { SEARCH_USERS_QUERY } from '../../graphql/queries/searchUser'
+import { useClickOutside, useMe } from '../../hooks'
+import styles from './select-members-modal.module.css'
+import { TUser } from '../../types/types'
 
 export const SelectMembersModal = ({
   addMember,
+  memberAlreadySelected,
   visible,
   onClose,
 }: {
   addMember: (member: TUser) => void
+  memberAlreadySelected: (memberId: string) => boolean
   visible: boolean
   onClose: () => void
 }) => {
@@ -20,12 +22,20 @@ export const SelectMembersModal = ({
     searchUsers: TUser[]
   }>(SEARCH_USERS_QUERY)
 
-  const searchResult = data?.searchUsers
   const [searchTerm, setSearchTerm] = useState('')
   useEffect(() => {
-    if (!searchTerm) return
+    if (!searchTerm) {
+      return
+    }
     searchUsers({ variables: { searchTerm } })
   }, [searchTerm])
+
+  const searchResult = useMemo(() => {
+    if (!searchTerm) return []
+    return data?.searchUsers?.filter(
+      (user) => user.id !== me?.id && !memberAlreadySelected(user.id)
+    )
+  }, [data, searchTerm, memberAlreadySelected])
 
   const clickRef = useRef(null)
 
@@ -47,9 +57,8 @@ export const SelectMembersModal = ({
         type='text'
       />
       <div className={styles['search-list']}>
-        {me?.friends.map((friend) => (
+        {/* {me?.friends.map((friend) => (
           <div
-            className={styles.option}
             key={friend.id}
             onClick={() => {
               addMember(friend as TUser)
@@ -58,17 +67,16 @@ export const SelectMembersModal = ({
           >
             {friend.username}
           </div>
-        ))}
+        ))} */}
         {searchResult?.map((user) => (
           <div
-            className={styles.option}
             key={user.id}
             onClick={() => {
               addMember(user)
               onClose()
             }}
           >
-            {user.username}
+            {user.username} ({user.email})
           </div>
         ))}
       </div>

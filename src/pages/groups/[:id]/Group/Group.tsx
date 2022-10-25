@@ -1,19 +1,19 @@
 import React from 'react'
-import styles from '../../../styles/group.module.css'
-import {useGroup} from '../../../hooks'
-import {IoIosArrowBack} from 'react-icons/io'
-import {TbDots} from 'react-icons/tb'
-import {useNavigate, useParams} from 'react-router-dom'
-import {ExpenseItem} from '../../../components'
-import {convertUserNameToInitials} from '../../../util'
-import {BiPlus, BiPlusCircle} from 'react-icons/bi'
+import styles from './group.module.css'
+import { useGroup } from '../../../../hooks'
+import { IoIosArrowBack } from 'react-icons/io'
+import { TbDots } from 'react-icons/tb'
+import { useNavigate, useParams } from 'react-router-dom'
+import { ExpenseItem } from '../../../../components'
+import { convertUserNameToInitials } from '../../../../util'
+import { BiPlus } from 'react-icons/bi'
 
 export const Group = () => {
-  const {groupId} = useParams()
+  const { groupId } = useParams()
   const navigate = useNavigate()
-  const {group, totalAmount, loading} = useGroup(groupId as string)
+  const { group, totalAmount, loading } = useGroup(groupId as string)
 
-  const {expenses} = group
+  const { expenses } = group
 
   if (loading) {
     return <div>Loading...</div>
@@ -23,8 +23,8 @@ export const Group = () => {
     <div className={styles.container}>
       <header className={styles.header}>
         <div className={styles.navigation}>
-          <IoIosArrowBack size={30} onClick={() => navigate(-1)}/>
-          <TbDots size={30}/>
+          <IoIosArrowBack size={30} onClick={() => navigate(-1)} />
+          <TbDots size={30} />
         </div>
         <h3 className={styles.title}>
           <span>{group.title}</span>
@@ -41,22 +41,22 @@ export const Group = () => {
       <section className={styles['list-container']}>
         <div className={styles.list}>
           {expenses.map((expense) => (
-            <ExpenseItem key={expense.id} expense={expense}/>
+            <ExpenseItem key={expense.id} expense={expense} />
           ))}
           {expenses.map((expense) => (
-            <ExpenseItem key={expense.id} expense={expense}/>
+            <ExpenseItem key={expense.id} expense={expense} />
           ))}
           {expenses.map((expense) => (
-            <ExpenseItem key={expense.id} expense={expense}/>
+            <ExpenseItem key={expense.id} expense={expense} />
           ))}
           {expenses.map((expense) => (
-            <ExpenseItem key={expense.id} expense={expense}/>
+            <ExpenseItem key={expense.id} expense={expense} />
           ))}
           {expenses.map((expense) => (
-            <ExpenseItem key={expense.id} expense={expense}/>
+            <ExpenseItem key={expense.id} expense={expense} />
           ))}
           {expenses.map((expense) => (
-            <ExpenseItem key={expense.id} expense={expense}/>
+            <ExpenseItem key={expense.id} expense={expense} />
           ))}
         </div>
       </section>

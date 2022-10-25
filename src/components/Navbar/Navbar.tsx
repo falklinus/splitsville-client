@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/navbar.module.css'
+import styles from './navbar.module.css'
 import { BiBell, BiHomeAlt, BiUser } from 'react-icons/bi'
 import { Link, useLocation } from 'react-router-dom'
 

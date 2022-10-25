@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLogin, useMe } from '../../hooks'
 import { useRegister } from '../../hooks'
-import styles from '../../styles/landing.module.css'
+import styles from './auth.module.css'
 
 export const Register = () => {
   const { register, error } = useRegister()
@@ -14,8 +14,8 @@ export const Register = () => {
   })
 
   const handleChange = ({
-                          target: { name, value },
-                        }: React.ChangeEvent<HTMLInputElement>) => {
+    target: { name, value },
+  }: React.ChangeEvent<HTMLInputElement>) => {
     setRegisterInput((prev) => ({
       ...prev,
       [name]: value,
@@ -34,8 +34,8 @@ export const Register = () => {
         Username
         <input
           className={styles.input}
-          type="text"
-          name="username"
+          type='text'
+          name='username'
           value={registerInput['username']}
           onChange={handleChange}
         />
@@ -45,8 +45,8 @@ export const Register = () => {
         Email
         <input
           className={styles.input}
-          type="email"
-          name="email"
+          type='email'
+          name='email'
           value={registerInput['email']}
           onChange={handleChange}
         />
@@ -56,8 +56,8 @@ export const Register = () => {
         Password
         <input
           className={styles.input}
-          type="password"
-          name="password"
+          type='password'
+          name='password'
           value={registerInput['password']}
           onChange={handleChange}
         />
@@ -67,14 +67,16 @@ export const Register = () => {
         Confirm password
         <input
           className={styles.input}
-          type="password"
-          name="confirmPassword"
+          type='password'
+          name='confirmPassword'
           value={registerInput['confirmPassword']}
           onChange={handleChange}
         />
         <span className={styles.error}>{error?.confirmPassword}</span>
       </label>
-      <button className={styles.button} type="submit">Do it</button>
+      <button className={styles.button} type='submit'>
+        Do it
+      </button>
     </form>
   )
 }
@@ -87,8 +89,8 @@ export const Login = () => {
   })
 
   const handleChange = ({
-                          target: { name, value },
-                        }: React.ChangeEvent<HTMLInputElement>) => {
+    target: { name, value },
+  }: React.ChangeEvent<HTMLInputElement>) => {
     setLoginInput((prev) => ({
       ...prev,
       [name]: value,
@@ -107,8 +109,8 @@ export const Login = () => {
         Email
         <input
           className={styles.input}
-          type="email"
-          name="email"
+          type='email'
+          name='email'
           value={loginInput['email']}
           onChange={handleChange}
         />
@@ -118,14 +120,16 @@ export const Login = () => {
         Password
         <input
           className={styles.input}
-          type="password"
-          name="password"
+          type='password'
+          name='password'
           value={loginInput['password']}
           onChange={handleChange}
         />
         <span className={styles.error}>{error?.password}</span>
       </label>
-      <button className={styles.button} type="submit">Do it</button>
+      <button className={styles.button} type='submit'>
+        Do it
+      </button>
     </form>
   )
 }
@@ -147,19 +151,23 @@ export const Auth = () => {
       <div className={styles['buttons-container']}>
         <button
           onClick={() => setActiveForm('login')}
-          className={`${activeForm === 'login' ? styles.active : ''} ${styles.button}`}
+          className={`${activeForm === 'login' ? styles.active : ''} ${
+            styles.button
+          }`}
         >
           Login
         </button>
         <button
           onClick={() => setActiveForm('register')}
-          className={`${activeForm === 'register' ? styles.active : ''} ${styles.button}`}
+          className={`${activeForm === 'register' ? styles.active : ''} ${
+            styles.button
+          }`}
         >
           Register
         </button>
       </div>
-      {activeForm === 'login' && <Login/>}
-      {activeForm === 'register' && <Register/>}
+      {activeForm === 'login' && <Login />}
+      {activeForm === 'register' && <Register />}
     </div>
   )
 }

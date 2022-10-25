@@ -1,10 +1,10 @@
-import React, { FC } from 'react'
+import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import styles from '../../../styles/expense.module.css'
+import styles from './expense.module.css'
 import { BiEdit } from 'react-icons/bi'
 import { IoCloseSharp } from 'react-icons/io5'
 import moment from 'moment'
-import { useExpense } from '../../../hooks'
+import { useExpense } from '../../../../hooks'
 
 export const Expense = () => {
   const navigate = useNavigate()

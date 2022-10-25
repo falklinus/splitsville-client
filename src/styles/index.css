@@ -70,3 +70,89 @@ ul {
     background-color: #f9f9f9;
   }
 }
+
+.card {
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0px -2px 10px 0px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+.slide-up-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1em 0;
+  gap: 3em;
+  border-radius: 8px;
+  box-shadow: 0px -2px 10px 0px rgba(0, 0, 0, 0.1);
+  overflow: auto;
+  background-color: #f9f9f9;
+  width: calc(100vw - 1em);
+  height: calc(100vh - 1em);
+  position: absolute;
+  left: 50%;
+  translate: -50% 0;
+  bottom: 0;
+  animation: slide-up 500ms ease;
+}
+
+@keyframes slide-up {
+  0% {
+    bottom: -100%;
+  }
+  75% {
+    bottom: 1%;
+  }
+  100% {
+    bottom: 0%;
+  }
+}
+
+.slide-up-container > .header {
+  position: relative;
+  padding: 0 1em 1em 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #21354721;
+  overflow: hidden;
+}
+
+.slide-up-container > .header > .title {
+  margin: 0 auto;
+  font-weight: bold;
+  text-transform: uppercase;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.form {
+  padding: 2em;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+}
+
+.form > .form-control {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  width: 100%;
+}
+
+.form > .form-control > .input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #242424;
+  border-radius: 0;
+  outline: none;
+  padding: 0.25em 0.5em;
+  color: #242424;
+  font-size: 1.5rem;
+  width: 100%;
+  text-align: center;
+}
